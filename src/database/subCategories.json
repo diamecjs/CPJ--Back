@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Cuerdas",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Jardineria y Riego",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Cementos",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Estuco",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Yeso",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Arenas y Gravas",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Electricidad",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Cerraduras y Herrajes",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Accesorios PVC",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Tornilleria",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Herramientas Manuales",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Medicion",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Cintas",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Pisos y Paredes",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Pegantes",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Lubricantes",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Baño y Cocina",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Aseo",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Alambres",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Drywall",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Accesorios para construccion",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Tuberias PVC",
+    "category":"ferreteria"
+  },
+  {
+    "name": "Mallas",
+    "category":"ferreteria"
+  }
+]
