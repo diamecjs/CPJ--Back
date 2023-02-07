@@ -8,10 +8,10 @@ const router = Router();
 
 router.post("/", async (req, res) => {
 
-    const {name, image, subCategory} = req.body
+    const {name, image, disponible, description, subCategory} = req.body
     try{
     let newProduct= await Product.create({
-        name, image
+        name, image, disponible, description
     })
     let sub = await SubCategory.findAll({
         where: {

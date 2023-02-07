@@ -90,5 +90,17 @@
   {
     "name": "Mallas",
     "category":"ferreteria"
+  },
+  {
+    "name": "Proteccion Personal",
+    "category": "elementos de proteccion personal"
+  },
+  {
+    "name": "Alquiler equipos",
+    "category": "alquiler de equipos para construccion"
+  },
+  {
+    "name": "Refacciones",
+    "category": "venta de refacciones"
   }
 ]
