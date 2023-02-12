@@ -5,37 +5,20 @@ const { SubCategory, Category, Product } = require("../db");
 const router = Router();
 
 router.post("/", async (req, res) => {
-  const { name, categories } = req.body;
+  const { name, category} = req.body;
   try {
-    let subC = await SubCategory.findOne({ where: { name } });
-
-    if (subC) {
-      return res.status(400).json({
-        ok: false,
-        msg: "Ya existe esta sub categoria",
-      });
-    }
-
-    const sub = await SubCategory.create({
+    const subCategory = await SubCategory.create({
       name,
+     category,
     });
-    const todoSub = await Product.findAll({
-      include: [
-        {
-          model: Product,
-          through: {
-            attributes: ["name", "image"],
-          },
-        },
-      ],
-    });
-    sub.addProduct(todoSub);
 
-    return res.status(200).send(sub);
+    return res.status(200).send(subCategory);
   } catch (error) {
-    console.log("error en post/subCategories", error);
+    console.error("Error en POST /subCategory:", error);
+    return res.status(500).send({ message: "Error en el servidor" });
   }
 });
+
 
 router.get("/", async (req, res) => {
   try {

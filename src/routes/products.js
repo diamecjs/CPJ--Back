@@ -7,22 +7,21 @@ const { Product, SubCategory } = require("../db");
 const router = Router();
 
 router.post("/", async (req, res) => {
+  const { name, image, description, disponible, subCategory, price} = req.body;
+  try {
+    const product = await Product.create({
+      name,
+      image,
+      description,
+      disponible,
+      subCategory,
+      price,
+    });
 
-    const {name, image, disponible, description, subCategory} = req.body
-    try{
-    let newProduct= await Product.create({
-        name, image, disponible, description
-    })
-    let sub = await SubCategory.findAll({
-        where: {
-            name: subCategory
-        }
-    })
-    await newProduct.addSubCategory(sub)
-    res.send('Nuevo Producto creado')
-
+    return res.status(200).send(product);
   } catch (error) {
-    console.log("error en ruta post product", error);
+    console.error("Error en POST /product:", error);
+    return res.status(500).send({ message: "Error en el servidor" });
   }
 });
 
@@ -68,5 +67,16 @@ router.get("/", async (req, res) => {
           console.log("error en ruta delete product");
         }
       });
-    
+
+      router.put("/:id", async (req, res) => {
+        const { id } = req.params;
+        const datos = req.body;
+        try {
+          let change = await Product.update(datos, { where: { id } });
+          return res.send(change);
+        } catch (error) {
+          console.log("TError en ruta put");
+        }
+      });
+      
     module.exports = router;
