@@ -7,7 +7,7 @@ const {
  loadSubCategory
 } = require("./src/loadDatabase");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT ;
 // Syncing all the models at once
 conn.sync({ force: false}).then(async () => {
     loadCategory();
