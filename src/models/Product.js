@@ -1,4 +1,4 @@
-const { DataTypes, UUIDV4  } = require("sequelize");
+const { DataTypes, UUIDV4 } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("product", {
@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
       defaultValue: UUIDV4,
       primaryKey: true,
       allowNull: false,
-  },
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -17,15 +17,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     disponible: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    subCategory: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     price: {

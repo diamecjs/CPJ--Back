@@ -72,11 +72,17 @@ router.get("/", async (req, res) => {
         const { id } = req.params;
         const datos = req.body;
         try {
-          let change = await Product.update(datos, { where: { id } });
-          return res.send(change);
+          let product = await Product.findOne({ where: { id } });
+          if (!product) return res.sendStatus(404);
+          let change = await product.update(datos);
+          return res.json(change);
         } catch (error) {
-          console.log("TError en ruta put");
+          console.log(error);
+          res.sendStatus(500);
         }
       });
+      
+      
+     
       
     module.exports = router;
