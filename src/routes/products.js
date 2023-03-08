@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
         }
       });
 
-      router.put("products/:id", async (req, res) => {
+      router.put("/:id", async (req, res) => {
         const { id } = req.params;
         const datos = req.body;
         try {
