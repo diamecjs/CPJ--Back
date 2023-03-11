@@ -1,7 +1,7 @@
-const { DataTypes, UUIDV4  } = require("sequelize");
+const { DataTypes, UUIDV4 } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("subCategory", {
+  const SubCategory = sequelize.define("subCategory", {
     id: {
       type: DataTypes.UUID,
       defaultValue: UUIDV4,
@@ -17,4 +17,10 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
   });
+
+  SubCategory.associate = (models) => {
+    SubCategory.belongsToMany(models.Product, { through: "product_subCategory" });
+  };
+
+  return SubCategory;
 };

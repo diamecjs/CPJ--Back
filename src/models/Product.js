@@ -28,5 +28,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    subCategory: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+   
   });
 };

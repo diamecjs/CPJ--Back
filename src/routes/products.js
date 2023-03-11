@@ -26,35 +26,34 @@ router.post("/", async (req, res) => {
 });
 
 
-
 router.get("/", async (req, res) => {
     
-        try {
-            const products = await Product.findAll();{
-                where: { name: products }
-            }
-    
-            if (!products) {
-                return res.status(404).json({
-                    ok: false,
-                    msg: 'No se encontraron productos',
-                });
-            }
-    
-            res.status(200).json({
-                ok: true,
-                msg: 'Lista de productos',
-                products,
-            });
-    
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                ok: false,
-                msg: 'Por favor hable con el administrador',
-            });
-        }
-    });
+  try {
+      const products = await Product.findAll();{
+          where: { name: products }
+      }
+
+      if (!products) {
+          return res.status(404).json({
+              ok: false,
+              msg: 'No se encontraron productos',
+          });
+      }
+
+      res.status(200).json({
+          ok: true,
+          msg: 'Lista de productos',
+          products,
+      });
+
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({
+          ok: false,
+          msg: 'Por favor hable con el administrador',
+      });
+  }
+});
 
     router.delete("/:id", async (req, res) => {
         const { id } = req.params;
@@ -72,17 +71,11 @@ router.get("/", async (req, res) => {
         const { id } = req.params;
         const datos = req.body;
         try {
-          let product = await Product.findOne({ where: { id } });
-          if (!product) return res.sendStatus(404);
-          let change = await product.update(datos);
-          return res.json(change);
+          let change = await Product.update(datos, { where: { id } });
+          return res.send(change);
         } catch (error) {
-          console.log(error);
-          res.sendStatus(500);
+          console.log("TError en ruta put");
         }
       });
-      
-      
-     
       
     module.exports = router;
