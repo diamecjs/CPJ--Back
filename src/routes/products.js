@@ -74,7 +74,7 @@ router.get("/", async (req, res) => {
         const { id } = req.params;
         const datos = req.body;
         try {
-          let result = await fetch(`https://ferreteria-cpj.herokuapp.com/products/${id}`, {
+          let result = await fetch(`https://cpj-production.up.railway.app/products/${id}`, {
             method: "PUT",
             body: JSON.stringify(datos),
             headers: { "Content-Type": "application/json" },
