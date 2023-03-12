@@ -66,15 +66,23 @@ router.get("/", async (req, res) => {
           console.log("error en ruta delete product");
         }
       });
-
       router.put("/:id", async (req, res) => {
         const { id } = req.params;
         const datos = req.body;
         try {
-          let change = await Product.update(datos, { where: { id } });
-          return res.send(change);
+          const response = await fetch(`https://cpj-production.up.railway.app/products/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+            },
+            body: JSON.stringify(datos),
+          });
+          const result = await response.json();
+          return res.send(result);
         } catch (error) {
-          console.log("TError en ruta put");
+          console.log("Error en ruta PUT: ", error);
+          return res.status(500).send("Error en la solicitud PUT");
         }
       });
       
