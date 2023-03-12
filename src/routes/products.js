@@ -70,19 +70,26 @@ router.get("/", async (req, res) => {
       
           
 
-      router.put("/:id", async (req, res) => {
-        const { id } = req.params;
-        const datos = req.body;
+      router.put('/:id', async (req, res) => {
         try {
-          let result = await fetch(`https://cpj-production.up.railway.app/products/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(datos),
-            headers: { "Content-Type": "application/json" },
+          const { id } = req.params;
+          const { name, image, disponible, description, price, subCategory } = req.body;
+      
+          const response = await axios.put(`https://cpj-production.up.railway.app/products/${id}`, {
+            name,
+            image,
+            disponible,
+            description,
+            price,
+            subCategory,
           });
-          let data = await result.json();
-          return res.send(data);
+      
+          const updatedProduct = response.data;
+      
+          res.status(200).json(updatedProduct);
         } catch (error) {
-          console.log("Error en ruta PUT: ", error);
+          console.error(error);
+          res.status(500).json({ message: 'Error updating product' });
         }
       });
       
