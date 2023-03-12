@@ -54,6 +54,33 @@ router.get("/", async (req, res) => {
       });
   }
 });
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      return res.status(404).json({
+        ok: false,
+        msg: "No se encontró el producto",
+      });
+    }
+
+    res.status(200).json({
+      ok: true,
+      msg: "Producto encontrado",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: "Por favor hable con el administrador",
+    });
+  }
+});
+
 
     router.delete("/:id", async (req, res) => {
         const { id } = req.params;
