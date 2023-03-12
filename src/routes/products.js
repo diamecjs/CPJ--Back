@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 const { Product, SubCategory } = require("../db");
 
 
@@ -69,20 +69,21 @@ router.get("/", async (req, res) => {
       });
       
           
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const datos = req.body;
-  try {
-    let change = await fetch(`https://cpj-production.up.railway.app/products/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(datos),
-    });
-    return res.send(change);
-  } catch (error) {
-    console.log("Error en ruta PUT: ", error);
-    res.status(500).send("Error interno del servidor");
-  }
-});
+
+      router.put("/:id", async (req, res) => {
+        const { id } = req.params;
+        const datos = req.body;
+        try {
+          let result = await fetch(`https://ferreteria-cpj.herokuapp.com/products/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(datos),
+            headers: { "Content-Type": "application/json" },
+          });
+          let data = await result.json();
+          return res.send(data);
+        } catch (error) {
+          console.log("Error en ruta PUT: ", error);
+        }
+      });
       
     module.exports = router;
