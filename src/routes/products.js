@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
+const fetch = require("node-fetch");
 const { Product, SubCategory } = require("../db");
 
 
@@ -66,24 +67,22 @@ router.get("/", async (req, res) => {
           console.log("error en ruta delete product");
         }
       });
-      router.put("/:id", async (req, res) => {
-        const { id } = req.params;
-        const datos = req.body;
-        try {
-          const response = await fetch(`https://cpj-production.up.railway.app/products/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json",
-            },
-            body: JSON.stringify(datos),
-          });
-          const result = await response.json();
-          return res.send(result);
-        } catch (error) {
-          console.log("Error en ruta PUT: ", error);
-          return res.status(500).send("Error en la solicitud PUT");
-        }
-      });
+      
+          
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const datos = req.body;
+  try {
+    let change = await fetch(`https://cpj-production.up.railway.app/products/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datos),
+    });
+    return res.send(change);
+  } catch (error) {
+    console.log("Error en ruta PUT: ", error);
+    res.status(500).send("Error interno del servidor");
+  }
+});
       
     module.exports = router;
