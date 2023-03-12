@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const axios = require("axios");
-
 const { Product, SubCategory } = require("../db");
 
 
@@ -67,29 +66,15 @@ router.get("/", async (req, res) => {
           console.log("error en ruta delete product");
         }
       });
-      
-          
 
-      router.put('/:id', async (req, res) => {
+      router.put("/:id", async (req, res) => {
+        const { id } = req.params;
+        const datos = req.body;
         try {
-          const { id } = req.params;
-          const { name, image, disponible, description, price, subCategory } = req.body;
-      
-          const response = await axios.put(`https://cpj-production.up.railway.app/products/${id}`, {
-            name,
-            image,
-            disponible,
-            description,
-            price,
-            subCategory,
-          });
-      
-          const updatedProduct = response.data;
-      
-          res.status(200).json(updatedProduct);
+          let change = await Product.update(datos, { where: { id } });
+          return res.send(change);
         } catch (error) {
-          console.error(error);
-          res.status(500).json({ message: 'Error updating product' });
+          console.log("TError en ruta put");
         }
       });
       
