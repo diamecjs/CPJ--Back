@@ -96,12 +96,14 @@ router.get("/:id", async (req, res) => {
 
       router.put("/:id", async (req, res) => {
         const { id } = req.params;
+        console.log("id received in the controller:", id);
         const datos = req.body;
         try {
           let change = await Product.update(datos, { where: { id } });
           return res.send(change);
         } catch (error) {
-          console.log("TError en ruta put");
+          console.log("Error en ruta put:", error);
+          return res.status(500).send({ error: "Internal server error" });
         }
       });
       
