@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-import fetch from "node-fetch";
+
 const { Product, SubCategory } = require("../db");
 
 
