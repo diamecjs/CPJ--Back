@@ -10,7 +10,14 @@ const app = express();
 require("./db.js");
 
 const server = express();
-app.use(cors());
+
+const cors = require('cors');
+
+
+app.use(cors({
+  origin: 'http://localhost:3001/' || 'https://cpjferreteria.vercel.app/'
+}));
+
 server.name = "API";
 
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
