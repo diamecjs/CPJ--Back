@@ -11,7 +11,7 @@ require("./db.js");
 
 const server = express();
 
-const cors = require('cors');
+
 
 
 app.use(cors({
